@@ -1,0 +1,49 @@
+voir:
+    path: /voir/{id}
+    defaults:  { _controller: DefaultController }
+    
+addComm:
+    path: /comm/ajouter/{id}
+    defaults:  { _controller: DefaultController }
+
+ajout:
+    path: /comm/ajout/{id}
+    defaults:  { _controller: DefaultController }
+    
+update:
+    path: /update/{id}
+    defaults:  { _controller: DefaultController }
+    
+updateComm:
+    path: /update/{id}
+    defaults:  { _controller: DefaultController }
+    
+trier:
+    path: /trier
+    defaults:  { _controller: DefaultController }
+    
+suppCafe:
+    path: /suppCafe/{id}
+    defaults:  { _controller: DefaultController }
+    
+modifCafe:
+    path: /modifCafe/{id}
+    defaults:  { _controller: DefaultController }
+    
+suppComm:
+    path: /suppComm/{id}
+    defaults:  { _controller: DefaultController }
+    
+modifComm:
+    path: /modifComm/{id}
+    defaults:  { _controller: DefaultController }
+    
+login:
+    path: /login
+    default: { _controller: DefaultController}
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout

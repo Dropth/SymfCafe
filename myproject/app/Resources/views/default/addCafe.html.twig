@@ -1,0 +1,82 @@
+{# empty Twig template #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <h1> Ajouter votre Café </h1>
+    
+   <div class='container'>
+            <ul class='nav nav-pills pull-center'>
+                <div class='row'>
+                   {#  {{ form_start(form, {'method': 'GET'}) }}
+                    
+                    <div class='form-control-static'>
+                        <div class="form-group">
+                                <div>
+                                    {{ form_label(form.auteur) }}
+                                    {{ form_errors(form.auteur) }}
+                                    {{ form_widget(form.auteur) }}
+                                </div>
+                        </div>
+                            
+                            
+                               <div class="form-group">
+                                {{ form_row(form.date) }}
+                                </div>
+                            
+                            <input type="submit" value="Envoyez le formulaire"/>
+                        {{ form_end(form) }}#}
+                   
+                   
+                   
+                    <form action="{{ path('ajoutCafe')}}" method="POST">
+
+                            <div class="form-group">
+                                <label for="nom">Nom du Café</label>    
+                                <input id="nom" class="form-control" type="text" name="nom"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="adresse">Adresse du Cafe</label>
+                                    <input id="adresse" class="form-control" type="text" name="adresse"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="arron">Arrondissement</label>
+                                    <input id="arron" class="form-control" type="int" name="arron"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="geo">Geo Latitude</label>
+                                    <input id="geo" class="form-control" type="text" name="geo"><br>
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label for="prixC">Prix Comptoir</label>
+                                    <input id="prixC" class="form-control" type="int" name="prixC"><br>
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label for="prixS">Prix Salle</label>
+                                    <input id="prixS" class="form-control" type="int" name="prixS"><br>
+                            </div>
+                        
+                            <div class="form-group">
+                                    <label for="prixT">Prix Terasse</label>
+                                    <input id="prixT" class="form-control" type="int" name="prixT"><br>
+                            </div>
+
+                            <div class="form-group">
+                             <button type="submit" class="btn-success" name="valider">Valider</button>
+                             <button type="submit" class="btn-success" name="annuler">Annuler</button>
+                            </div>	
+                    </form>
+                    
+                    
+                </div>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

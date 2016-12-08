@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Commentaires
+ *
+ * @ORM\Table(name="commentaires")
+ * @ORM\Entity
+ */
+class Commentaires
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_cafe", type="integer", nullable=false)
+     */
+    private $idCafe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date", type="string", length=250, nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="texte", type="string", length=535, nullable=false)
+     */
+    private $texte;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="etoile", type="integer", nullable=false)
+     */
+    private $etoile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="auteur", type="string", length=65, nullable=false)
+     */
+    private $auteur;
+
+
+}

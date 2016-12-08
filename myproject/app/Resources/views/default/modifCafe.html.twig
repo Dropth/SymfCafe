@@ -1,0 +1,63 @@
+{# empty Twig template #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <h1> Modifier votre Café </h1>
+    
+   <div class='container'>
+            <ul class='nav nav-pills pull-center'>
+                <div class='row'>
+                   
+                   
+                    <form action="{{ path('update',{'id' : cafe.id})}}" method="POST">
+
+                            <div class="form-group">
+                                <label for="nom">Nom du Café</label>    
+                                <input id="nom" class="form-control" type="text" name="nom" value="{{cafe.nom}}"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="adresse">Adresse du Cafe</label>
+                                    <input id="adresse" class="form-control" type="text" name="adresse" value="{{cafe.adresse}}"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="arron">Arrondissement</label>
+                                    <input id="arron" class="form-control" type="int" name="arron" value="{{cafe.arrondissement}}"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="geo">Geo Latitude</label>
+                                    <input id="geo" class="form-control" type="text" name="geo" value="{{cafe.geoLatitude}}"><br>
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label for="prixC">Prix Comptoir</label>
+                                    <input id="prixC" class="form-control" type="int" name="prixC" value="{{cafe.prixComptoir}}"><br>
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label for="prixS">Prix Salle</label>
+                                    <input id="prixS" class="form-control" type="int" name="prixS" value="{{cafe.prixSalle}}"><br>
+                            </div>
+                        
+                            <div class="form-group">
+                                    <label for="prixT">Prix Terasse</label>
+                                    <input id="prixT" class="form-control" type="int" name="prixT" value="{{cafe.prixTerasse}}"><br>
+                            </div>
+
+                            <div class="form-group">
+                             <button type="submit" class="btn-success" name="valider">Valider</button>
+                             <button type="submit" class="btn-success" name="annuler">Annuler</button>
+                            </div>	
+                    </form>
+                    
+                    
+                </div>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{# empty Twig template #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <h1> Ajouter votre commentaire </h1>
+    
+   <div class='container'>
+            <ul class='nav nav-pills pull-center'>
+                <div class='row'>
+                    <form action="{{ path('ajout',{'id' : id})}}" method="POST">
+
+                            <div class="form-group hidden">
+                                <input id="idCafe" class="form-control" type="int" name="idCafe" value="{{id}}"><br>
+                            </div>
+
+                            <div class="form-group hidden">
+                                    <input id="date" class="form-control" type="text" name="date" value="{{ "now"|date("d/m/Y") }}"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="texte">Votre commentaire</label>
+                                    <input id="texte" class="form-control" type="text" name="texte"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="etoile">Votre note (zéro : c’est du jus de chaussette. Cinq : What Else?)</label>
+                                    <input id="etoile" class="form-control" type="int" name="etoile"><br>
+                            </div>
+
+                            <div class="form-group">
+                                    <label for="auteur">Votre pseudo</label>
+                                    <input id="auteur" class="form-control" type="text" name="auteur" value="{{app.session.get('login')}}"><br>
+                            </div>
+
+                            <div class="form-group">
+                             <button type="submit" class="btn-success" name="valider">Valider</button>
+                             <button type="submit" class="btn-success" name="annuler">Annuler</button>
+                            </div>	
+                    </form>
+                    
+                    
+                </div>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/modifComm.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/tableauPartiel.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/web/bootstrap.css</file>
+            <file>file:/D:/wamp/www/Symph/myproject/src/AppBundle/Entity/Commentaires.php</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/login.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/voirCafe.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/index.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/config/security.yml</file>
+            <file>file:/D:/wamp/www/Symph/myproject/web/body.css</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/base.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/inscription.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/web/main.css</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/addCafe.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/connexion.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/modifCafe.html.twig</file>
+            <file>file:/D:/wamp/www/Symph/myproject/src/AppBundle/Controller/DefaultController.php</file>
+            <file>file:/D:/wamp/www/Symph/myproject/app/Resources/views/default/addComm.html.twig</file>
+        </group>
+    </open-files>
+</project-private>

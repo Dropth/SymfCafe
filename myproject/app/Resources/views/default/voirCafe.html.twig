@@ -1,0 +1,146 @@
+{# empty Twig template #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class='container'>
+            <ul class='nav nav-pills pull-right'>
+                <div class='row'>
+                        
+                            <p><img src="http://i38.servimg.com/u/f38/12/09/47/97/testfo11.png"></p>
+    
+                            
+
+                            <h1> Détails d'un cafe </h1>
+                            
+                            <p>
+                                Nous avons donc ici un café se nommant <span class="badge badge-primary">{{cafe.nom}}</span> 
+                                et dont l'adresse est <span class="badge badge-primary">{{cafe.adresse}}</span>.</p>
+
+                                <p>Voici la géo localisation : <span class="badge badge-primary">{{cafe.geoLatitude}}</span>  </p>
+
+                                <p>Les différents prix sont :</p>
+
+                                <p> Comptoir : <span class="badge badge-primary">{{cafe.prixComptoir}}</span>
+                                    Salle : <span class="badge badge-primary">{{cafe.prixSalle}}</span>
+                                    Terasse : <span class="badge badge-primary">{{cafe.prixTerasse}}</span></p>
+
+                                {% set cptEtoile = 0 %}
+                                {% set cptComm = 0 %}
+                                {% set etoileMoy = 0 %}
+
+                                </br>
+                                {% for commentaire in com %}
+                                    
+                                    {% for i in 0..commentaire.etoile-1 %}
+                                        
+                                       {% set cptEtoile = cptEtoile + 1 %}
+                                        
+                                    {% endfor %}
+                                    
+                                    {% set cptComm = cptComm + 1 %}
+                                    
+                                {% endfor %}
+                                {% if cptComm != 0 %}
+                                    {% set etoileMoy = cptEtoile/cptComm %}
+                                {% else %}
+                                     {% set etoileMoy = -1 %}
+                                {% endif %}                                   
+                                   
+                                   {% if etoileMoy > 0 %}
+                                     <p>Voici la note moyenne : <FONT size="10" color="#309C00">{% for j in 0..etoileMoy-1 %}
+                                        
+                                        ✰
+                                        
+                                    {% endfor %}</FONT></p>
+                                   {% else %}
+                                      <p>Voici la note moyenne : <FONT size="10" color="#309C00">0</FONT></p>
+                                   {% endif %}
+
+
+                               
+                                    
+                                    
+                                   <div id ="map" style="height:180px; border-width:2px; border-style:solid ; border-color:#309C00;">
+                                 
+                                 <script>
+                                    // create a map in the "map" div, set the view to a given place and zoom
+                                    var map = L.map('map').setView([{{ cafe.geoLatitude }}], 13);
+
+                                    // add an OpenStreetMap tile layer
+                                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                    }).addTo(map);
+
+                                    // add a marker in the given location, attach some popup content to it and open the popup
+                                    L.marker([{{ cafe.geoLatitude }}]).addTo(map)
+                                            .bindPopup('{{ cafe.nom }}')
+                                    .openPopup();
+                                </script>
+                                
+                                </div>
+                                
+                                <p>
+                                <h4>Souhaitez-vous revoir la  <a href="{{ path('Lister')}}">liste</a> des cafes ?</h4>
+                                </p>
+                                <br>
+                                
+                                                              
+                                    {% if is_granted('ROLE_USER') %}
+                                                <p><a href="{{ path('addComm',{'id' : cafe.id})}}" class="btn btn-success">Ajouter un commentaire</a></p> 
+                                    {% endif %}
+                                        
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                            <p><a href="{{ path('suppCafe',{'id' : cafe.id})}}" class="btn btn-success">Supprimer le café</a>
+                                            <p><a href="{{ path('modifCafe',{'id' : cafe.id})}}" class="btn btn-success">Modifier le café</a></p>
+                                    {% endif %}
+                                    
+                                
+
+                                <div class="page-header">
+
+                                    <h1>Les commentaires</h1>
+
+                                </div>
+                                
+                                {% for commentaire in com %}
+                                    
+                                    <div style="border-width:1px; border-style:solid ; border-color:#309C00;">
+                                        
+                                            {{commentaire.texte}}
+                                            
+                                            <fieldset>
+                                                Auteur :  {{commentaire.auteur}}, Le {{commentaire.date}}</br>Note :
+                                                {% for i in 0..commentaire.etoile-1 %}
+                                        
+                                                    ★
+
+                                                 {% endfor %}
+                                                 
+                                                 <br><br>
+                                            
+                                                  {% if is_granted('ROLE_ADMIN') %}
+                                                    <p><a href="{{ path('suppComm',{'id' : commentaire.id})}}" class="btn btn-success">Supprimer le commentaire</a>
+                                                    <p><a href="{{ path('modifComm',{'id' : commentaire.id})}}" class="btn btn-success">Modifier le commentaire</a></p>
+                                                  {% endif %}
+                                                  
+                                                  <br>
+                                            </fieldset>
+                                            <br>
+                                            
+                                            
+                                    </div>
+                                    <br>
+                                {% endfor %}
+                                    
+                                    <br>
+                                    <br>
+                                    
+                                    </div>
+                                    </ul>
+                                    </div>
+                                    </div>
+
+
+
+{% endblock %}

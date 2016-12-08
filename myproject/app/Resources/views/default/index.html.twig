@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class='container'>
+            <ul class='nav nav-pills pull-right'>
+                <div class='row'>
+    
+    <center>
+     <img src="{{ asset('apple-touch-icon.png') }}" />
+        
+    <br>
+    <h1> Liste des café <small>...Oui Monseigneur !</small></h1>
+    <br>
+    
+    <p><img src="http://i38.servimg.com/u/f38/12/09/47/97/cafev11.png"></p>
+
+<br>
+
+
+<form id='recherche' method='POST' action="{{path('Lister')}}">
+    
+    <table>
+    
+    <tr>
+        
+        <td>Nom : </td><td><input type="text" name="nom" /></td>
+        
+    </tr>
+    
+    <tr>
+        
+        <td>Adresse : </td><td><input type="text" name="adresse" /></td>
+        
+    </tr>
+    
+    <tr>
+        
+        <td>Arrondissement :  </td><td><input type="text" name="arrondissement" /></td>
+        
+    </tr>
+    
+    <tr>
+        
+        <td><input type="submit" class="btn-success" value="Filtrer" /></td>
+        
+    </tr>
+    
+    </table>
+    
+</form>
+<br>
+
+ <p>
+     {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('addCafe')}}" class="btn btn-success">Ajouter un cafe</a>
+        
+     {% endif %}
+</p>
+<br>
+    
+    <table class="table">
+	<thead>
+		<tr>
+			<th>id</th>
+                        <th>nom</th>
+                        <th>adresse</th>
+                        <th>arrondissement</th>
+                        
+       
+                        
+                        <th class="hidden-sm">geo_latitude</th>
+                        <th class="hidden-sm">prix_comptoir</th>
+                        <th class="hidden-sm">prix_salle</th>
+                        <th class="hidden-sm">prix_terasse</th>
+                        <th class="hidden-sm"></th>
+        
+		</tr>
+	</thead>
+	
+        <tbody>
+    
+    {% for cafe in cafes %}
+      
+            
+            <tr>
+                <td><a href="{{ path('voir',{'id' : cafe.id})}}">{{cafe.id}}</a></td>
+                <td>{{cafe.nom}}</td>
+                <td>{{cafe.adresse}}</td>
+                <td>{{cafe.arrondissement}}</td>
+                <td>{{cafe.geoLatitude}}</td>
+                <td>{{cafe.prixComptoir}}</td>
+                <td>{{cafe.prixSalle}}</td>
+                <td>{{cafe.prixTerasse}}</td>
+            </tr>
+
+        
+    {% endfor %}
+    
+    </tbody>
+    </table>
+    
+    
+{% endblock %}

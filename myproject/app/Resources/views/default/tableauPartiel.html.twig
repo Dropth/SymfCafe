@@ -1,0 +1,37 @@
+<table class="table">
+    <thead>
+    <tr>
+        {% if is_granted('ROLE_ADMIN') %}
+            <th></th>
+            <th></th>
+        {% endif %}
+        <th></th>
+        <th>nom</th>
+        <th>adresse</th>
+        <th>arrondissement</th>
+        <th class="hidden-sm hidden-xs">geo_latitude</th>
+        <th class="hidden-sm hidden-xs">prix_comptoir</th>
+        <th class="hidden-sm hidden-xs">prix_salle</th>
+        <th class="hidden-sm hidden-xs">prix_terasse</th>
+        <th class="hidden-sm hidden-xs"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for cafeUnique in cafes %}
+        <tr>
+           <td> <a href="{{ path('voir',{'id':cafeUnique.id}) }}" >
+                    {{cafeUnique.id}}
+                </a></td>
+            <td>{{ cafeUnique.nom }}</td>
+            <td>{{ cafeUnique.adresse }}</td>
+            <td>{{ cafeUnique.arrondissement }}</td>
+            <td>{{ cafeUnique.geoLatitude }}</td>
+            <td>{{ cafeUnique.prixComptoir }}</td>
+            <td>{{ cafeUnique.prixSalle }}</td>
+            <td>{{ cafeUnique.prixTerasse }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

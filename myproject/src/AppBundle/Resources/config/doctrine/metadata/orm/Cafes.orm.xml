@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Cafes" table="cafes">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="42" nullable="true"/>
+    <field name="adresse" type="string" column="adresse" length="71" nullable="true"/>
+    <field name="arrondissement" type="string" column="arrondissement" length="14" nullable="true"/>
+    <field name="geoLatitude" type="string" column="geo_latitude" length="24" nullable="true"/>
+    <field name="prixComptoir" type="string" column="prix_comptoir" length="13" nullable="true"/>
+    <field name="prixSalle" type="string" column="prix_salle" length="10" nullable="true"/>
+    <field name="prixTerasse" type="string" column="prix_terasse" length="12" nullable="true"/>
+  </entity>
+</doctrine-mapping>

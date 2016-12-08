@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Un cafe ?{% endblock %}</title>
+        <link href="{{ asset('bootstrap.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('main.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+        <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $("ul.notes-echelle").addClass("js");
+                $("ul.notes-echelle li").addClass("note-off");
+
+                $("ul.notes-echelle input")
+                        .focus(function() {
+                            $(this).parents("ul.notes-echelle").find("li").removeClass("note-focus");
+                            $(this).parent("li").addClass("note-focus");
+                            $(this).parent("li").nextAll("li").addClass("note-off");
+                            $(this).parent("li").prevAll("li").removeClass("note-off");
+                            $(this).parent("li").removeClass("note-off");
+                        })
+                        .blur(function() {
+                            $(this).parents("ul.notes-echelle").find("li").removeClass("note-focus");
+                            if($(this).parents("ul.notes-echelle").find("li input:checked").length == 0) {
+                                $(this).parents("ul.notes-echelle").find("li").addClass("note-off");
+                            }
+                        })
+                        .click(function() {
+                            $(this).parents("ul.notes-echelle").find("li").removeClass("note-checked");
+                            $(this).parent("li").addClass("note-checked");
+                        });
+
+                $("ul.notes-echelle li").mouseover(function() {
+                    $(this).nextAll("li").addClass("note-off");
+                    $(this).prevAll("li").removeClass("note-off");
+                    $(this).removeClass("note-off");
+                });
+
+                $("ul.notes-echelle").mouseout(function() {
+                    $(this).children("li").addClass("note-off");
+                    $(this).find("li input:checked").parent("li").trigger("mouseover");
+                });
+
+                $("ul.notes-echelle input:checked").parent("li").trigger("mouseover");
+                $("ul.notes-echelle input:checked").trigger("click");
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+                $('#form').submit(function(e){
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/',
+                        dataType: 'text',
+                        type: 'post',
+                        contentType: 'application/x-www-form-urlencoded',
+                        data: $(this).serialize(),
+                        success: function( data, textStatus, jQxhr ){
+                            $('#retour').html(data);
+                        },
+                        error: function( jqXhr, textStatus, errorThrown ){
+                            console.log( errorThrown );
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container">
+      		<div class="header">
+	        <ul class="nav nav-pills pull-right">
+	          <li class="active"><a href="{{path('Lister')}}">Home</a></li>
+                  
+                    {% if is_granted('ROLE_USER') %}
+                        <li><a href="{{ path('logout') }}">Deconnexion</a></li>
+                    {% else %}
+                        <li><a href="{{ path('login') }}">Connexion</a></li>
+                    {% endif %}
+                  
+	          <li><a href="{{path('inscription')}}">Inscription</a></li>
+	        </ul>
+                    <h3 class="text-muted"><FONT color="#309C00">{{app.session.get('login')}} Un Petit Café ?</FONT></h3>
+	    </div>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        <div class="footer">
+        	<p><span class="glyphicon glyphicon-copyright-mark"></span> J. Némard</p>
+                <p>Modifié par Florian Alline</p>
+      	</div>
+
+    </div>
+    </body>
+</html>
